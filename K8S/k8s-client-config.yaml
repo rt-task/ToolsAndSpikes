@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-client-deployment
+  labels:
+    app: angular-client
+spec:
+  selector:
+    matchLabels:
+      app: angular-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: angular-client
+    spec:
+      containers:
+      - name: client
+        image: unikey/test-app-client-k8s
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-client-service
+  labels:
+    app: angular-client
+spec:
+  selector:
+    app: angular-client
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

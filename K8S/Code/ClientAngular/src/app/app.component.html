@@ -1,0 +1,9 @@
+<div>
+  <button (click)="getUsers()">Get</button>
+  <button (click)="postUsers()">Post</button>
+</div>
+
+<div *ngFor="let u of users">
+  <label>{{ u.id }}</label>
+  <label>{{ u.name }}</label>
+</div>
